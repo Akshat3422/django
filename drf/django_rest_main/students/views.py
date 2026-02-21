@@ -120,7 +120,7 @@ def get_student_detail(request, id):
 
 
 
-class Employees(mixins.ListModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin,generics.GenericAPIView):
+class Employees(mixins.ListModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixins.DestroyModelMixin,generics.GenericAPIView):
     queryset=Employee.objects.all()
     serializer_class=EmployeeSerializer
 
@@ -132,3 +132,10 @@ class Employees(mixins.ListModelMixin,mixins.CreateModelMixin,mixins.RetrieveMod
     
     def post(self,request):
         return self.create(request)
+
+    def put(self,request,pk):
+        return self.update(request,pk)
+
+    def delete(self,request,pk):
+        return self.destroy(request,pk)
+
